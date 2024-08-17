@@ -2119,7 +2119,7 @@ url(/fonts/vendor/bootstrap-icons/bootstrap-icons.woff?39795c0b4513de014cf8685fc
   --bs-dark: #212529;
   --bs-primary-rgb: 13, 110, 253;
   --bs-secondary-rgb: 108, 117, 125;
-  --bs-success-rgb: 25, 135, 84;
+  --bs-success-rgb: 0, 169, 157;
   --bs-info-rgb: 13, 202, 240;
   --bs-warning-rgb: 255, 193, 7;
   --bs-danger-rgb: 220, 53, 69;
@@ -2170,7 +2170,7 @@ url(/fonts/vendor/bootstrap-icons/bootstrap-icons.woff?39795c0b4513de014cf8685fc
   --bs-secondary-bg-rgb: 233, 236, 239;
   --bs-tertiary-color: rgba(33, 37, 41, 0.5);
   --bs-tertiary-color-rgb: 33, 37, 41;
-  --bs-tertiary-bg: #f8f9fa;
+  --bs-tertiary-bg: #19b1a6; /* #00A99D*/
   --bs-tertiary-bg-rgb: 248, 249, 250;
   --bs-heading-color: inherit;
   --bs-link-color: #0d6efd;
@@ -4218,9 +4218,9 @@ progress {
 .form-control:focus {
   color: var(--bs-body-color);
   background-color: var(--bs-body-bg);
-  border-color: #86b7fe;
-  outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  border-color: #19b1a6;  
+  outline: none;
+  box-shadow: 0 0 0 0.1rem rgba(25, 177, 166, 0.25);
 }
 .form-control::-webkit-date-and-time-value {
   min-width: 85px;

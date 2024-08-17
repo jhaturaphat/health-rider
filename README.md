@@ -8,4 +8,11 @@
 </p>
 
 ## Health Rider
+## API
+https://docs.google.com/document/d/1z-oOyk-aA5L9nHlxxUYlOeQDb5otRs7K618V6yA-Wg8/edit#heading=h.4t8aqhxuxgrs
+<br>
+php artisan update
+php artisan key:generate
+<br>
+https://www.color-hex.com/color/00a99d
 
