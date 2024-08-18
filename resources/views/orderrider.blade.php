@@ -179,7 +179,10 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">ส่งข้อมูล</button>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary"><i class="bi bi-floppy2"></i> ส่งข้อมูล</button>
+        </div>
+        
     </form>
 </div>
 @endsection
