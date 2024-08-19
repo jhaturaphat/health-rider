@@ -188,7 +188,7 @@
 
 <script>
     document.getElementById('fetch_hn').addEventListener('click', function(){
-        axios.get('/patient?hn=88973')
+        axios.get('/patient',{params:{ hn:88973 }})
         .then(res => {
             console.log(res.data);
         })
