@@ -12,7 +12,7 @@
                         <div class="mb-3 input-group input-group-sm">
                             <sapn for="birth_date"  class="input-group-text text-white" for="hn">HN</sapn>
                             <input type="text" class="form-control" id="hn" value="000088973">
-                            <span class="input-group-text text-white" title="ค้นหา"><i class="bi bi-search"></i></span>
+                            <span class="input-group-text text-white" title="ค้นหา" id="fetch_hn"><i class="bi bi-search"></i></span>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -185,4 +185,17 @@
         
     </form>
 </div>
+
+<script>
+    document.getElementById('fetch_hn').addEventListener('click', function(){
+        axios.get('/patient?hn=88973')
+        .then(res => {
+            console.log(res.data);
+        })
+        .catch(error => {
+            console.error(error);
+            })
+        });
+</script>
+
 @endsection

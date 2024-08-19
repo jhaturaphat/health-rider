@@ -21,4 +21,5 @@ Route::get('/', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/orderrider',[OrderRiderController::class,'orderrider'])->name('orderrider');
+Route::get('/orderrider',[OrderRiderController::class,'Orderrider'])->name('orderrider');
+Route::get('/patient',[OrderRiderController::class,'patient'])->name('patient');
