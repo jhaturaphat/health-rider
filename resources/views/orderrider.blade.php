@@ -16,6 +16,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
+                        <input type="hidden" id="coverageCode">
                         <div class="mb-3 input-group input-group-sm">
                             <label for="coverageDesc" class="input-group-text text-white">สิทธิการรักษา</label>
                             <input type="text" class="form-control" id="coverageDesc" value="ประกันสังคม รพ.ทดสอบ">
