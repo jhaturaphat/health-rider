@@ -11,14 +11,15 @@
                     <div class="col-md-6">
                         <div class="mb-3 input-group input-group-sm">
                             <sapn for="birth_date"  class="input-group-text text-white" for="hn">HN</sapn>
-                            <input type="text" class="form-control" id="hn" value="000088973">
+                            <input type="text" class="form-control" id="cardHN" value="000088973">
                             <span class="input-group-text text-white" title="ค้นหา" id="fetch_hn"><i class="bi bi-search"></i></span>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <input type="hidden" id="coverageCode">
+                        
                         <div class="mb-3 input-group input-group-sm">
                             <label for="coverageDesc" class="input-group-text text-white">สิทธิการรักษา</label>
+                            <input type="hidden" id="coverageCode">
                             <input type="text" class="form-control" id="coverageDesc" value="ประกันสังคม รพ.ทดสอบ">
                         </div>
                     </div>
@@ -181,7 +182,7 @@
             </div>
         </div>
         <div class="d-grid">
-            <button type="submit" class="btn btn-primary"><i class="bi bi-floppy2"></i> ส่งข้อมูล</button>
+            <button type="button" id="register" class="btn btn-primary"><i class="bi bi-floppy2"></i> ส่งข้อมูล</button>
         </div>
         
     </form>
@@ -190,13 +191,25 @@
 <script>
     document.getElementById('fetch_hn').addEventListener('click', function(){
         axios.get('/patient',{params:{ hn:88973 }})
-        .then(res => {
-            console.log(res.data);
+        .then(res => {            
+            const obj = res.data[0];
+            console.log(obj);
+            document.getElementById("cardHN").value         = obj.cardHN;
+            document.getElementById("coverageCode").value   = obj.coverageCode;
+            document.getElementById("coverageDesc").value   = obj.coverageDesc;
+            document.getElementById("account_title_th").value = obj.account_title_th;
+            document.getElementById("firstname").value      = obj.firstname;
+            document.getElementById("lastname").value       = obj.lastname;
+            
         })
         .catch(error => {
             console.error(error);
             })
         });
+
+    document.getElementById("register").addEventListener('click', function(){
+
+    });
 </script>
 
 @endsection
