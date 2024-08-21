@@ -23,7 +23,7 @@ class OrderRiderController extends Controller
         SELECT 
         p.cid as cardnum, p.hn as cardHN, p.pname as account_title_th, p.fname as firstname
         , p.lname as lastname, p.birthday as birth_date
-        , IF(p.sex = 1, 'ชาย','หญิง') as gender, REPLACE(p.hometel,' ','-') as mobile
+        , IF(p.sex = 1, 'ชาย','หญิง') as gender, REPLACE(p.hometel,' ','-') as mobile, p.mobile_phone_number as mobile_other
         , CONCAT(p.addrpart,' ม.',p.moopart,' ', addr.full_name,' ', addr.pocode) as address, p.email
         , p.addrpart as house_no, p.moopart as moo
         , pt.pttype as coverageCode, pt.name as coverageDesc , prv.province_name as province
@@ -37,7 +37,7 @@ class OrderRiderController extends Controller
         INNER JOIN province as prv ON p.chwpart = prv.province_code  
         INNER JOIN district as dit ON p.amppart2 = dit.district_code
         INNER JOIN tambol as tab ON p.tmbpart2 = tab.tambol_code
-        WHERE p.hn = ?
+        WHERE p.hn = ? AND p.death = 'N'
         LIMIT 10;
         ____SQL;
 
@@ -53,7 +53,7 @@ class OrderRiderController extends Controller
         $infomation[0]->drugLocationDesc    = "";
         $infomation[0]->cinicLocationId     = "";
         $infomation[0]->cinicLocationDesc   = "";
-        $infomation[0]->callback_url        = "";
+        $infomation[0]->callback_url        = "https://cphconnect.detudomhospital.org/callback/healthrider";
         $infomation[0]->note                = "";
         $infomation[0]->road                = "";
         
@@ -62,16 +62,4 @@ class OrderRiderController extends Controller
     }
 }
 
-/*{
-    "cardHN": "000088973",
-    "pname": "นาย",
-    "fname": "จตุรภัทร",
-    "lname": "ศิริบูรณ์",
-    "birthday": "1982-01-05",
-    "gender": "ชาย",
-    "hometel": "081 3907061",
-    "address": "320 ม.21 ต.เมืองเดช อ.เดชอุดม จ.อุบลราชธานี 34160",
-    "email": "งานคอมพิวเตอร์",
-    "pttype": "21",
-    "name": "ข้าราชการ กรมบัญชีกลาง รูด EDC"
-}*/
+
