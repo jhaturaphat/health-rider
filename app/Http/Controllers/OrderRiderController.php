@@ -23,7 +23,7 @@ class OrderRiderController extends Controller
         SELECT 
         p.cid as cardnum, p.hn as cardHN, p.pname as account_title_th, p.fname as firstname
         , p.lname as lastname, p.birthday as birth_date
-        , IF(p.sex = 1, 'ชาย','หญิง') as gender, REPLACE(p.hometel,' ','-') as mobile, p.mobile_phone_number as mobile_other
+        , IF(p.sex = 1, 'ชาย','หญิง') as gender, REPLACE(p.hometel,' ','') as mobile, p.mobile_phone_number as mobile_other
         , CONCAT(p.addrpart,' ม.',p.moopart,' ', addr.full_name,' ', addr.pocode) as address, p.email
         , p.addrpart as house_no, p.moopart as moo
         , pt.pttype as coverageCode, pt.name as coverageDesc , prv.province_name as province
@@ -42,7 +42,8 @@ class OrderRiderController extends Controller
         ____SQL;
 
         DB::connection('mysql_his')->select("SET NAMES utf8"); //Error message => Malformed UTF-8 characters, possibly incorrectly encoded
-        $infomation = DB::connection('mysql_his')->select($sql,[$hn, $hn]);         
+        $infomation = DB::connection('mysql_his')->select($sql,[$hn, $hn]);        
+        $vnstat = DB::connection('mysql_his')->select("SELECT * FROM vn_stat WHERE hn = ?");
         
         $infomation[0]->vn                  = "";
         $infomation[0]->road                = "";

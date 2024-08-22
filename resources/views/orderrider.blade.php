@@ -10,13 +10,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3 input-group input-group-sm">
-                            <sapn for="birth_date"  class="input-group-text text-white" for="hn">HN</sapn>
-                            <input type="text" class="form-control" id="cardHN" value="000088973">
+                            <sapn for="cardHN"  class="input-group-text text-white" for="hn">HN</sapn>
+                            <input type="text" class="form-control" id="cardHN" value="">
                             <span class="input-group-text text-white" title="ค้นหา" id="fetch_hn"><i class="bi bi-search"></i></span>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        
+                    <div class="col-md-6">                        
                         <div class="mb-3 input-group input-group-sm">
                             <label for="coverageDesc" class="input-group-text text-white">สิทธิการรักษา</label>
                             <input type="hidden" id="coverageCode" disabled>
@@ -191,7 +190,7 @@
 </div>
 
 <script>
-    let obj = {};
+    let obj = null;
     document.getElementById('fetch_hn').addEventListener('click', async function(){
         const hn = document.getElementById("cardHN").value;
         await axios.get('/patient',{params:{ hn:hn }})
@@ -234,7 +233,8 @@
         e.preventDefault();
         const hospitalKey = "{{env('HOSPITAL_KEY')}}";
         obj.note = document.getElementById('note').value;
-        axios.post("https://telepharma.one.th/management/api/vhv_transport_center/register_formDrug",{obj},{
+        
+        axios.post("https://telepharma.one.th/management/api/vhv_transport_center/register_formDrug", obj, {
             headers: {
                 'Content-Type': 'application/json',
                 'hospitalKey': hospitalKey
