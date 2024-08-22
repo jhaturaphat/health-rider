@@ -8,11 +8,22 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="mb-3 input-group input-group-sm">
                             <sapn for="cardHN"  class="input-group-text text-white" for="hn">HN</sapn>
                             <input type="text" class="form-control" id="cardHN" value="">
                             <span class="input-group-text text-white" title="ค้นหา" id="fetch_hn"><i class="bi bi-search"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3 input-group input-group-sm">    
+                            <sapn for="cardHN"  class="input-group-text text-white" for="hn">VN</sapn>                        
+                            <select class="form-select form-select-sm" aria-label=".form-select-lg example">
+                                <option selected>visit number</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>                            
                         </div>
                     </div>
                     <div class="col-md-6">                        

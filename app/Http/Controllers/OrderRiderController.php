@@ -43,7 +43,8 @@ class OrderRiderController extends Controller
 
         DB::connection('mysql_his')->select("SET NAMES utf8"); //Error message => Malformed UTF-8 characters, possibly incorrectly encoded
         $infomation = DB::connection('mysql_his')->select($sql,[$hn, $hn]);        
-        $vnstat = DB::connection('mysql_his')->select("SELECT * FROM vn_stat WHERE hn = ?");
+        $sql_vn = "SELECT vn, vstdate FROM vn_stat WHERE hn = ? GROUP BY vn ORDER BY vstdate desc limit 3";
+        $vnstat = DB::connection('mysql_his')->select($sql_vn,[$hn]);
         
         $infomation[0]->vn                  = "";
         $infomation[0]->road                = "";
@@ -57,7 +58,7 @@ class OrderRiderController extends Controller
         $infomation[0]->callback_url        = "https://cphconnect.detudomhospital.org/callback/healthrider";
         $infomation[0]->note                = "";
         $infomation[0]->road                = "";
-        
+        $infomation[0]->visit              = $vnstat;
         // return $infomation;
         return response()->json($infomation);
     }
