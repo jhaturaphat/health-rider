@@ -18,7 +18,7 @@ Auth::routes();
 Route::get('/', function () {
     return view('/orderrider');
 });
-
+Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/orderrider',[OrderRiderController::class,'Orderrider'])->name('orderrider');

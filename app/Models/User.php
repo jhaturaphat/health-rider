@@ -17,28 +17,28 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    // ข้ามการใช้ฐานข้อมูล
+    protected $fillable = ['username', 'password'];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    public static function findByUsername($username)
+    {
+        $users = [
+            'user1' => '123456',
+            'user2' => '123456',
+        ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+        if (isset($users[$username])) {
+            return new self([
+                'username' => $username,
+                'password' => $users[$username],
+            ]);
+        }
+
+        return null;
+    }
+
+    public function validatePassword($password)
+    {
+        return $this->password === $password;
+    }
 }
