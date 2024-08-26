@@ -79,6 +79,10 @@
         <main class="py-4" style="background-color: #E5F6F5; height: 100vh;">
             @yield('content')
         </main>
+        
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
     </div>
 </body>
 </html>

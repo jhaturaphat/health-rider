@@ -1,0 +1,34 @@
+version: '3.7'
+services:
+  php8:    
+    build:
+      args:
+        user: web
+        uid: 1000
+      context: ./docker/php
+      dockerfile: Dockerfile
+    container_name: health-rider-php8  
+    volumes:
+      - ./:/var/www   
+      - ./docker/php/:/usr/local/etc/php/conf.d/   
+    networks:
+      - kong-network 
+    # restart: always
+
+  nginx:
+    image: nginx:latest
+    container_name: health-rider-nginx 
+    ports:
+      - "8081:80"
+    volumes:
+      - ./docker/nginx/:/etc/nginx/conf.d # แนบไฟล์คอนฟิกของ Nginx ของคุณ
+      - ./:/var/www   
+    networks:
+      - kong-network
+    # restart: always
+
+networks:
+  kong-network:
+    external: true
+    name: kong-network
+    

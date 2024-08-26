@@ -10,20 +10,15 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="mb-3 input-group input-group-sm">
-                            <sapn for="cardHN"  class="input-group-text text-white" for="hn">HN</sapn>
+                            <sapn for="cardHN" class="input-group-text text-white" for="hn">HN</sapn>
                             <input type="text" class="form-control" id="cardHN" value="">
                             <span class="input-group-text text-white" title="ค้นหา" id="fetch_hn"><i class="bi bi-search"></i></span>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="mb-3 input-group input-group-sm">    
-                            <sapn for="cardHN"  class="input-group-text text-white" for="hn">VN</sapn>                        
-                            <select class="form-select form-select-sm" aria-label=".form-select-lg example">
-                                <option selected>visit number</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>                            
+                            <sapn for="vn" class="input-group-text text-white" for="hn">VN</sapn>   
+                            <input type="text" class="form-control" id="vn" value="" disabled>  
                         </div>
                     </div>
                     <div class="col-md-6">                        
@@ -170,15 +165,23 @@
                     <div class="col-md-6">
                         <div class="mb-3 input-group input-group-sm">
                             <label for="drugLocationDesc" class="input-group-text text-white">ตำแหน่งห้องยา</label>
-                            <input type="hidden" id="drugLocationId">
-                            <input type="text" class="form-control" id="drugLocationDesc" value="" disabled>
+                            <input type="hidden" id="drugLocationId">                            
+                            <select class="form-select form-select-sm" aria-label=".form-select-lg example" id="drugLocationDesc">                                
+                                <option value="b5">อาคาร 5 ชั้น 1</option>
+                                <option value="er">ตึกอุบัติเหตุชั้น 1</option>
+                                <option value="50th">อาคารศูนย์สิทธิ์</option>
+                            </select> 
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3 input-group input-group-sm">
                             <label for="cinicLocationDesc" class="input-group-text text-white">ตำแหน่งคลินิก</label>
-                            <input type="hidden" id="cinicLocationId">
-                            <input type="text" class="form-control" id="cinicLocationDesc" value="" disabled>
+                            <input type="hidden" id="cinicLocationId">                            
+                            <select class="form-select form-select-sm" aria-label=".form-select-lg example" id="cinicLocationDesc">                                
+                                <option value="b5f1">ห้องจ่ายยา OPD</option>
+                                <option value="erf1">ห้องจ่ายยา ER</option>
+                                <option value="50thf1">ห้องจ่ายยา 50th</option>
+                            </select> 
                         </div>
                     </div>
                 </div>
@@ -201,58 +204,95 @@
 </div>
 
 <script>
-    let obj = null;
+    let obj = {};
     document.getElementById('fetch_hn').addEventListener('click', async function(){
         const hn = document.getElementById("cardHN").value;
         await axios.get('/patient',{params:{ hn:hn }})
-        .then(res => {            
-            obj = res.data[0];
+        .then(res => {    
             console.log(obj);
-            document.getElementById("cardHN").value         = obj.cardHN;
-            document.getElementById("coverageCode").value   = obj.coverageCode;
-            document.getElementById("coverageDesc").value   = obj.coverageDesc;
-            document.getElementById("account_title_th").value = obj.account_title_th;
-            document.getElementById("firstname").value      = obj.firstname;
-            document.getElementById("lastname").value       = obj.lastname;
-            document.getElementById("birth_date").value     = obj.birth_date;
-            document.getElementById("gender").value         = obj.gender;
-            document.getElementById("mobile").value         = obj.mobile;
-            document.getElementById("mobile_other").value   = obj.mobile_other;
-            document.getElementById("address").value        = obj.address;
-            document.getElementById("house_no").value       = obj.house_no;
-            document.getElementById("moo").value            = obj.moo;
-            document.getElementById("road").value           = obj.road;
-            document.getElementById("tambon").value         = obj.tambon;
-            document.getElementById("amphur").value         = obj.amphur;
-            document.getElementById("province").value       = obj.province;
-            document.getElementById("postal_code").value    = obj.postal_code;
-            document.getElementById("email").value          = obj.email;
-            document.getElementById("lat").value            = obj.lat;
-            document.getElementById("lng").value            = obj.lng;
-            document.getElementById("cinicLocationId").value = obj.cinicLocationId;
-            document.getElementById("cinicLocationDesc").value = obj.cinicLocationDesc;
-            document.getElementById("callback_url").value   = obj.callback_url;
-            document.getElementById("note").value           = obj.note;
-            
+            if(res.status == 200){
+                obj = res.data[0];                
+                document.getElementById("cardHN").value             = obj.cardHN;
+                document.getElementById("vn").value                 = obj.vn;
+                document.getElementById("coverageCode").value       = obj.coverageCode;
+                document.getElementById("coverageDesc").value       = obj.coverageDesc;
+                document.getElementById("account_title_th").value   = obj.account_title_th;
+                document.getElementById("firstname").value          = obj.firstname;
+                document.getElementById("lastname").value           = obj.lastname;
+                document.getElementById("birth_date").value         = obj.birth_date;
+                document.getElementById("gender").value             = obj.gender;
+                document.getElementById("mobile").value             = obj.mobile;
+                document.getElementById("mobile_other").value       = obj.mobile_other;
+                document.getElementById("address").value            = obj.address;
+                document.getElementById("house_no").value           = obj.house_no;
+                document.getElementById("moo").value                = obj.moo;
+                document.getElementById("road").value               = obj.road;
+                document.getElementById("tambon").value             = obj.tambon;
+                document.getElementById("amphur").value             = obj.amphur;
+                document.getElementById("province").value           = obj.province;
+                document.getElementById("postal_code").value        = obj.postal_code;
+                document.getElementById("email").value              = obj.email;
+                document.getElementById("lat").value                = obj.lat;
+                document.getElementById("lng").value                = obj.lng;
+                document.getElementById("cinicLocationId").value    = obj.cinicLocationId;
+                document.getElementById("cinicLocationDesc").value  = obj.cinicLocationDesc;
+                document.getElementById("callback_url").value       = obj.callback_url;
+                document.getElementById("note").value               = obj.note;
+            }else{
+                Swal.fire({
+                        title : res.status,
+                        text: res.statusText,
+                        icon: "question"
+                    });
+            }
         })
-        .catch(error => {
-            console.error(error);
+        .catch(err => {
+            console.error(err);
+            Swal.fire({
+                        title : "เกิดข้อผิดพลาด",
+                        text: "ติดต่อแอดมินโทร 155",
+                        icon: "error"
+                    });
             })
         });
 
     document.getElementById("register").addEventListener('click', function(e){
         e.preventDefault();
-        const hospitalKey = "{{env('HOSPITAL_KEY')}}";
-        obj.note = document.getElementById('note').value;
-        
+        const hospitalKey       = "{{env('HOSPITAL_KEY')}}";
+        const drugLocationDesc  = document.getElementById('drugLocationDesc');
+        const cinicLocationDesc = document.getElementById('cinicLocationDesc');
+
+        obj.note                = document.getElementById("note").value;
+        obj.drugLocationId      = drugLocationDesc.options[drugLocationDesc.selectedIndex].text;
+        obj.cinicLocationId     = cinicLocationDesc.options[cinicLocationDesc.selectedIndex].text;
+
+        // console.log(obj); return;
         axios.post("https://telepharma.one.th/management/api/vhv_transport_center/register_formDrug", obj, {
             headers: {
                 'Content-Type': 'application/json',
                 'hospitalKey': hospitalKey
             }
         })
-        .then(res=>{
-            console.log(res);
+        .then(res=>{              
+            switch(res.data.status_code){
+                case "200": 
+                    Swal.fire({
+                        title : res.data.status_code,
+                        text: res.data.message,
+                        icon: "success"
+                    });
+                    break;
+                case "400":
+                    Swal.fire({
+                        title : res.data.status_code,
+                        text: res.data.message,
+                        icon: "error"
+                    });
+                    break;
+                default:
+                    console.log(res); 
+            } 
+            
         })
         .catch(err => {
             console.error(error);
