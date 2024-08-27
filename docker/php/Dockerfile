@@ -32,7 +32,12 @@ ARG uid=1000
 ARG user=web
 RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
-    chown -R $user:$user /home/$user
+    chown -R $user:$user /home/$user && \
+    mkdir -m 777 /var/www/storage && \
+    mkdir -m 777 /var/www/bootstrap && \
+    mkdir -m 777 /var/www/bootstrap/cache && \
+    chmod -R 777 /var/www/storage && \
+    chmod -R 777 /var/www/bootstrap/cache
 
 WORKDIR /var/www
 
