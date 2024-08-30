@@ -70,13 +70,13 @@
                     <div class="col-md-6">
                         <div class="mb-3 input-group input-group-sm">
                             <label for="mobile" class="input-group-text text-white">เบอร์โทรศัพท์</label>
-                            <input type="text" class="form-control" id="mobile" value="" disabled>
+                            <input type="text" class="form-control" id="mobile" value="" >
                         </div>
                     </div>
                     <div class="col-md-6 ">
                         <div class="mb-3 input-group input-group-sm">
                             <label for="mobile_other" class="input-group-text text-white">เบอร์โทรศัพท์อื่น</label>
-                            <input type="text" class="form-control" id="mobile_other" value="" disabled>
+                            <input type="text" class="form-control" id="mobile_other" value="" >
                         </div>
                     </div>
                  </div>
@@ -86,25 +86,25 @@
                 <hr>
                 <div class="mb-3 input-group input-group-sm">
                     <label for="address" class="input-group-text text-white">ที่อยู่</label>
-                    <input type="text" class="form-control" id="address" value="" disabled>
+                    <input type="text" class="form-control" id="address" value="" >
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="mb-3 input-group input-group-sm">
                             <label for="house_no" class="input-group-text text-white">บ้านเลขที่</label>
-                            <input type="text" class="form-control" id="house_no" value="" disabled>
+                            <input type="text" class="form-control" id="house_no" value="" >
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="mb-3 input-group input-group-sm">
                             <label for="moo" class="input-group-text text-white">หมู่ที่</label>
-                            <input type="text" class="form-control" id="moo" value="" disabled>
+                            <input type="text" class="form-control" id="moo" value="" >
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="mb-3 input-group input-group-sm">
                             <label for="road" class="input-group-text text-white">ถนน</label>
-                            <input type="text" class="form-control" id="road" value="" disabled>
+                            <input type="text" class="form-control" id="road" value="" >
                         </div>
                     </div>
                 </div>
@@ -113,19 +113,19 @@
                     <div class="col-md-4">
                         <div class="mb-3 input-group input-group-sm">
                             <label for="tambon" class="input-group-text text-white">ตำบล</label>
-                            <input type="text" class="form-control" id="tambon" value="" disabled>
+                            <input type="text" class="form-control" id="tambon" value="" >
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="mb-3 input-group input-group-sm">
                             <label for="amphur" class="input-group-text text-white">อำเภอ</label>
-                            <input type="text" class="form-control" id="amphur" value="" disabled>
+                            <input type="text" class="form-control" id="amphur" value="" >
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="mb-3 input-group input-group-sm">
                             <label for="province" class="input-group-text text-white">จังหวัด</label>
-                            <input type="text" class="form-control" id="province" value="" disabled>
+                            <input type="text" class="form-control" id="province" value="" >
                         </div>
                     </div>
                 </div>
@@ -134,13 +134,13 @@
                     <div class="col-md-6">
                         <div class="mb-3 input-group input-group-sm">
                             <label for="postal_code" class="input-group-text text-white">รหัสไปรษณีย์</label>
-                            <input type="text" class="form-control" id="postal_code" value="" disabled>
+                            <input type="text" class="form-control" id="postal_code" value="" >
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3 input-group input-group-sm">
                             <label for="email" class="input-group-text text-white">อีเมล</label>
-                            <input type="email" class="form-control" id="email" value="" disabled>
+                            <input type="email" class="form-control" id="email" value="" >
                         </div>
                     </div>
                 </div>
@@ -148,13 +148,13 @@
                     <div class="col-md-6">
                         <div class="mb-3 input-group input-group-sm">
                             <label for="lat" class="input-group-text text-white">ละติจูด</label>
-                            <input type="text" class="form-control" id="lat" value="" disabled>
+                            <input type="text" class="form-control" id="lat" value="" >
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3 input-group input-group-sm">
                             <label for="lng" class="input-group-text text-white">ลองจิจูด</label>
-                            <input type="text" class="form-control" id="lng" value="" disabled>
+                            <input type="text" class="form-control" id="lng" value="" >
                         </div>
                     </div>
                 </div>
@@ -209,7 +209,7 @@
         const hn = document.getElementById("cardHN").value;
         await axios.get('/patient',{params:{ hn:hn }})
         .then(res => {    
-            console.log(obj);
+            console.log(obj);            
             if(res.status == 200){
                 obj = res.data[0];                
                 document.getElementById("cardHN").value             = obj.cardHN;
@@ -221,7 +221,7 @@
                 document.getElementById("lastname").value           = obj.lastname;
                 document.getElementById("birth_date").value         = obj.birth_date;
                 document.getElementById("gender").value             = obj.gender;
-                document.getElementById("mobile").value             = obj.mobile;
+                document.getElementById("mobile").value             = (obj.mobile).trim().replace(/\s+/g, '');
                 document.getElementById("mobile_other").value       = obj.mobile_other;
                 document.getElementById("address").value            = obj.address;
                 document.getElementById("house_no").value           = obj.house_no;
@@ -230,7 +230,7 @@
                 document.getElementById("tambon").value             = obj.tambon;
                 document.getElementById("amphur").value             = obj.amphur;
                 document.getElementById("province").value           = obj.province;
-                document.getElementById("postal_code").value        = obj.postal_code;
+                document.getElementById("postal_code").value        = (obj.postal_code).trim().replace(/\s+/g, '');
                 document.getElementById("email").value              = obj.email;
                 document.getElementById("lat").value                = obj.lat;
                 document.getElementById("lng").value                = obj.lng;
@@ -257,7 +257,7 @@
         });
 
     document.getElementById("register").addEventListener('click', function(e){
-        e.preventDefault();
+        e.preventDefault();        
         const hospitalKey       = "{{env('HOSPITAL_KEY')}}";
         const drugLocationDesc  = document.getElementById('drugLocationDesc');
         const cinicLocationDesc = document.getElementById('cinicLocationDesc');
@@ -265,6 +265,19 @@
         obj.note                = document.getElementById("note").value;
         obj.drugLocationId      = drugLocationDesc.options[drugLocationDesc.selectedIndex].text;
         obj.cinicLocationId     = cinicLocationDesc.options[cinicLocationDesc.selectedIndex].text;
+        obj.mobile              = document.getElementById('mobile').value;
+        obj.mobile_other        = document.getElementById("mobile_other").value;
+        obj.address             = document.getElementById("address").value; 
+        obj.house_no            = document.getElementById("house_no").value; 
+        obj.moo                 = document.getElementById("moo").value; 
+        obj.road                = document.getElementById("road").value; 
+        obj.tambon              = document.getElementById("tambon").value; 
+        obj.amphur              = document.getElementById("amphur").value; 
+        obj.province            = document.getElementById("province").value; 
+        obj.postal_code         = document.getElementById("postal_code").value; 
+        obj.email               = document.getElementById("email").value; 
+        obj.lat                 = document.getElementById("lat").value; 
+        obj.lng                 = document.getElementById("lng").value; 
 
         // console.log(obj); return;
         axios.post("https://telepharma.one.th/management/api/vhv_transport_center/register_formDrug", obj, {

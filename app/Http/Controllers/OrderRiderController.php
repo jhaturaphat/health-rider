@@ -22,8 +22,8 @@ class OrderRiderController extends Controller
         $sql = <<<____SQL
         SELECT 
         p.cid as cardnum, p.hn as cardHN, p.pname as account_title_th, p.fname as firstname
-        , p.lname as lastname, p.birthday as birth_date, vst.vn
-        , IF(p.sex = 1, 'ชาย','หญิง') as gender, REPLACE(p.hometel,' ','') as mobile, p.mobile_phone_number as mobile_other
+        , p.lname as lastname, p.birthday as birth_date/*, vst.vn*/
+        , IF(p.sex = 1, 'ชาย','หญิง') as gender, REPLACE(p.hometel,'-','') as mobile, p.mobile_phone_number as mobile_other
         , CONCAT(p.addrpart,' ม.',p.moopart,' ', addr.full_name,' ', addr.pocode) as address, p.email
         , p.addrpart as house_no, p.moopart as moo
         , pt.pttype as coverageCode, pt.name as coverageDesc , prv.province_name as province
@@ -37,17 +37,18 @@ class OrderRiderController extends Controller
         INNER JOIN province as prv ON p.chwpart = prv.province_code  
         INNER JOIN district as dit ON p.amppart2 = dit.district_code
         INNER JOIN tambol as tab ON p.tmbpart2 = tab.tambol_code
-        INNER JOIN (
+        /*INNER JOIN (
             SELECT * FROM opitemrece WHERE hn = ? AND vstdate = CURDATE() AND icode = '3004818'
-        ) as vst ON p.hn = vst.hn
+        ) as vst ON p.hn = vst.hn*/
         WHERE p.hn = ? AND p.death = 'N'
         LIMIT 10;
         ____SQL;
 
         DB::connection('mysql_his')->select("SET NAMES utf8"); //Error message => Malformed UTF-8 characters, possibly incorrectly encoded
-        $infomation = DB::connection('mysql_his')->select($sql,[$hn, $hn, $hn]);   
+        $infomation = DB::connection('mysql_his')->select($sql,[$hn, $hn]);   
             
             if (count($infomation) > 0){
+                $infomation[0]->vn                  = "";
                 $infomation[0]->road                = "";
                 $infomation[0]->landmark            = "";
                 $infomation[0]->lat                 = "";
