@@ -18,6 +18,7 @@ php artisan key:generate
 ## Docker
 docker-comppose build && docker-comppose up -d
 ## Update 
+git pull <br>
 docker-comppose down && docker-comppose build && docker-comppose up -d
 ## Color
 https://www.color-hex.com/color/00a99d
