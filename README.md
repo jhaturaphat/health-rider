@@ -7,15 +7,16 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Health Rider
+## Health Rider โรงพยาบาลสมเด็จพระยุพราชเดชอุดม
 ## API
 https://docs.google.com/document/d/1z-oOyk-aA5L9nHlxxUYlOeQDb5otRs7K618V6yA-Wg8/edit#heading=h.4t8aqhxuxgrs
 <br>
-php artisan update
+php artisan update <br>
 php artisan key:generate
 <br>
 ## Docker
-docker-comppose build
-
+docker-comppose build && docker-comppose up -d
+## Update 
+docker-comppose down && docker-comppose build && docker-comppose up -d
 https://www.color-hex.com/color/00a99d
 
