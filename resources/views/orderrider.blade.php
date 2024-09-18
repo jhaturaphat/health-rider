@@ -197,7 +197,7 @@
             </div>
         </div>
         <div class="d-grid">
-            <button type="submit" id="register" class="btn btn-primary"><i class="bi bi-floppy2"></i> ส่งข้อมูล</button>
+            <button type="button" id="register" class="btn btn-primary"><i class="bi bi-floppy2"></i> ส่งข้อมูล</button>
         </div>
         
     </form>
@@ -205,11 +205,21 @@
 
 <script>
     let obj = {};
-    document.getElementById('fetch_hn').addEventListener('click', async function(){
+    document.getElementById('fetch_hn').addEventListener('click', function(){
         const hn = document.getElementById("cardHN").value;
+        findItems(hn);
+    });
+
+    document.getElementById('cardHN').addEventListener('keypress', function(){
+        if (event.key !== "Enter") return;
+        const hn = this.value;
+        findItems(hn);
+    });
+
+    async function findItems(hn){
         await axios.get('/patient',{params:{ hn:hn }})
         .then(res => {    
-            console.log(obj);            
+            //console.log(obj);            
             if(res.status == 200){
                 obj = res.data[0];                
                 document.getElementById("cardHN").value             = obj.cardHN;
@@ -253,8 +263,8 @@
                         text: "ติดต่อแอดมินโทร 155",
                         icon: "error"
                     });
-            })
-        });
+            });
+    }
 
     document.getElementById("register").addEventListener('click', function(e){
         e.preventDefault();        
@@ -280,7 +290,8 @@
         obj.lng                 = document.getElementById("lng").value; 
 
         // console.log(obj); return;
-        axios.post("https://telepharma.one.th/management/api/vhv_transport_center/register_formDrug", obj, {
+        const url = "{{env('RIDER_API')}}";
+        axios.post(url, obj, {
             headers: {
                 'Content-Type': 'application/json',
                 'hospitalKey': hospitalKey
@@ -294,6 +305,7 @@
                         text: res.data.message,
                         icon: "success"
                     });
+                    resetFrom();
                     break;
                 case "400":
                     Swal.fire({
@@ -312,6 +324,46 @@
         });
         
     });
+
+    document.getElementById('address').addEventListener('click', function(){
+        let address = "";
+        address += document.getElementById("house_no").value; 
+        address += " ม."+document.getElementById("moo").value; 
+        address += " ต."+document.getElementById("tambon").value; 
+        address += " อ."+document.getElementById("amphur").value; 
+        address += " จ."+document.getElementById("province").value; 
+        address += " "+document.getElementById("postal_code").value; 
+        this.value = address;
+    });
+
+    function resetFrom(){
+        document.getElementById("vn").value                 = "";
+        document.getElementById("cardHN").value             = "";
+        document.getElementById("coverageCode").value       = "";
+        document.getElementById("coverageDesc").value       = "";
+        document.getElementById("account_title_th").value   = "";
+        document.getElementById("firstname").value          = "";
+        document.getElementById("lastname").value           = "";
+        document.getElementById("birth_date").value         = "";
+        document.getElementById("gender").value             = "";
+        document.getElementById("mobile").value             = "";
+        document.getElementById("mobile_other").value       = "";
+        document.getElementById("address").value            = "";
+        document.getElementById("house_no").value           = "";
+        document.getElementById("moo").value                = "";
+        document.getElementById("road").value               = "";
+        document.getElementById("tambon").value             = "";
+        document.getElementById("amphur").value             = "";
+        document.getElementById("province").value           = "";
+        document.getElementById("postal_code").value        = "";
+        document.getElementById("email").value              = "";
+        document.getElementById("lat").value                = "";
+        document.getElementById("lng").value                = "";
+        //document.getElementById("cinicLocationId").value    = "";
+        //document.getElementById("cinicLocationDesc").value  = "";
+        //document.getElementById("callback_url").value       = "";
+        document.getElementById("note").value               = "";
+    }
 </script>
 
 @endsection

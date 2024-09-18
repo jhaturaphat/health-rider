@@ -22,7 +22,7 @@ class OrderRiderController extends Controller
         $sql = <<<____SQL
         SELECT 
         p.cid as cardnum, p.hn as cardHN, p.pname as account_title_th, p.fname as firstname
-        , p.lname as lastname, p.birthday as birth_date/*, vst.vn*/
+        , p.lname as lastname, p.birthday as birth_date /*, vst.vn*/
         , IF(p.sex = 1, 'ชาย','หญิง') as gender, REPLACE(p.hometel,'-','') as mobile, p.mobile_phone_number as mobile_other
         , CONCAT(p.addrpart,' ม.',p.moopart,' ', addr.full_name,' ', addr.pocode) as address, p.email
         , p.addrpart as house_no, p.moopart as moo
