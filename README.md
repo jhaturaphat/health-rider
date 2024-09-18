@@ -8,9 +8,10 @@
 </p>
 
 ## Health Rider โรงพยาบาลสมเด็จพระยุพราชเดชอุดม
-## API
+## คู่มือ API
 https://docs.google.com/document/d/1z-oOyk-aA5L9nHlxxUYlOeQDb5otRs7K618V6yA-Wg8/edit#heading=h.4t8aqhxuxgrs
 <br>
+## PHP Config
 php artisan update <br>
 php artisan key:generate
 <br>
@@ -18,5 +19,6 @@ php artisan key:generate
 docker-comppose build && docker-comppose up -d
 ## Update 
 docker-comppose down && docker-comppose build && docker-comppose up -d
+## Color
 https://www.color-hex.com/color/00a99d
 
